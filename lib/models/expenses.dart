@@ -22,11 +22,15 @@ class _ExpensesState extends State<Expenses> {
         amount: 15.7,
         category: Category.leisure),
   ];
+  void _openAddExpenseOverlay() {
+    showModalBottomSheet(
+        context: context, builder: (ctx) => Text('Modal bottom sheet'));
+  }
 
   @override
   Widget build(BuildContext context) {
     double screenheight = MediaQuery.sizeOf(context).height;
-    double screenwidth = MediaQuery.sizeOf(context).width;
+    // double screenwidth = MediaQuery.sizeOf(context).width;
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -35,7 +39,7 @@ class _ExpensesState extends State<Expenses> {
         ),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: _openAddExpenseOverlay,
             icon: const Icon(Icons.add),
           )
         ],
