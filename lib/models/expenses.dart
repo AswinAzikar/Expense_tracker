@@ -25,9 +25,24 @@ class _ExpensesState extends State<Expenses> {
 
   @override
   Widget build(BuildContext context) {
+    double screenheight = MediaQuery.sizeOf(context).height;
+    double screenwidth = MediaQuery.sizeOf(context).width;
     return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          "Expense Tracker",
+          style: TextStyle(color: Colors.white, fontSize: 0.03 * screenheight),
+        ),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.add),
+          )
+        ],
+      ),
       body: Column(
         children: [
+          //
           const Text("the chart"),
           Expanded(
             child: ExpesnsesList(expenses: _registeredExprenses),
