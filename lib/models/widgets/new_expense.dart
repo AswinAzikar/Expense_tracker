@@ -12,6 +12,17 @@ class _NewExpenseState extends State<NewExpense> {
   final _titleController = TextEditingController();
   final _amountController = TextEditingController();
 
+  void _presentDatePicker() {
+    final now = DateTime.now();
+    final firstDate = DateTime(now.year - 1, now.month, now.day);
+    showDatePicker(
+      context: context,
+      firstDate: firstDate,
+      lastDate: now,
+      initialDate: now,
+    );
+  }
+
   @override
   void dispose() {
     _titleController.dispose();
@@ -51,30 +62,53 @@ class _NewExpenseState extends State<NewExpense> {
               ),
             ),
           ),
-          TextField(
-            controller: _amountController,
-            maxLength: 5,
-            keyboardType: TextInputType.numberWithOptions(decimal: true),
-            decoration: InputDecoration(
-              prefixText: '₹',
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10.0),
-                borderSide: const BorderSide(
-                  color: AppColors.green,
-                  width: 1.0,
+          Row(
+            children: [
+              Expanded(
+                child: TextField(
+                  controller: _amountController,
+                  maxLength: 5,
+                  keyboardType: TextInputType.numberWithOptions(decimal: true),
+                  decoration: InputDecoration(
+                    prefixText: '₹',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                      borderSide: const BorderSide(
+                        color: AppColors.green,
+                        width: 1.0,
+                      ),
+                    ),
+                    label: const Text(
+                      "Amount",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    enabledBorder: const OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: AppColors.green,
+                        width: 1.0,
+                      ),
+                    ),
+                  ),
                 ),
               ),
-              label: const Text(
-                "Amount",
-                style: TextStyle(color: Colors.white),
+              SizedBox(
+                width: .1 * screenwidth,
               ),
-              enabledBorder: const OutlineInputBorder(
-                borderSide: BorderSide(
-                  color: AppColors.green,
-                  width: 1.0,
-                ),
-              ),
-            ),
+              Expanded(
+                  child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text('select date'),
+                  IconButton(
+                    onPressed: _presentDatePicker,
+                    icon: Icon(
+                      Icons.calendar_month,
+                    ),
+                  )
+                ],
+              ))
+            ],
           ),
           Row(
             children: [
@@ -101,7 +135,7 @@ class _NewExpenseState extends State<NewExpense> {
                   foregroundColor: WidgetStateProperty.all(Colors.red),
                 ),
                 onPressed: () {
-                  print(_titleController.text);
+                  Navigator.pop(context);
                 },
                 child: const Text(
                   "cancel",
