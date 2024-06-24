@@ -1,3 +1,4 @@
+import 'package:expense_tracker/constans.dart';
 import 'package:expense_tracker/models/expense.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +11,7 @@ class ExpenseItem extends StatelessWidget {
     double screenheight = MediaQuery.sizeOf(context).height;
     double screenwidth = MediaQuery.sizeOf(context).width;
     return Card(
-      color: Color.fromARGB(126, 165, 223, 5),
+      color: AppColors.green,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
         child: Column(
