@@ -57,11 +57,15 @@ class _NewExpenseState extends State<NewExpense> {
       return;
     }
 
-    widget.onAddExpense(Expense(
-        date: _selectedDate!,
-        title: _titleController.text,
-        amount: enteredAmount,
-        category: _selectedCategory));
+    widget.onAddExpense(
+      Expense(
+          date: _selectedDate!,
+          title: _titleController.text,
+          amount: enteredAmount,
+          category: _selectedCategory),
+    );
+
+    Navigator.pop(context);
   }
 
   @override
@@ -73,11 +77,17 @@ class _NewExpenseState extends State<NewExpense> {
 
   @override
   Widget build(BuildContext context) {
+    EdgeInsetsGeometry padding = calculatePadding(context);
     double screenheight = MediaQuery.sizeOf(context).height;
     double screenwidth = MediaQuery.sizeOf(context).width;
 
+    // double leftPadding = screenwidth * 0.05;
+    // double topPadding = screenheight * 0.12;
+    // double rightPadding = screenwidth * 0.05;
+    // double bottomPadding = screenheight * 0.05;
+
     return Padding(
-      padding: const EdgeInsets.all(16),
+      padding: padding,
       child: Column(
         children: [
           TextField(
@@ -211,5 +221,18 @@ class _NewExpenseState extends State<NewExpense> {
         ],
       ),
     );
+  }
+
+  EdgeInsetsGeometry calculatePadding(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+
+    double leftPadding = screenWidth * 0.05;
+    double topPadding = screenHeight * 0.12;
+    double rightPadding = screenWidth * 0.05;
+    double bottomPadding = screenHeight * 0.05;
+
+    return EdgeInsets.fromLTRB(
+        leftPadding, topPadding, rightPadding, bottomPadding);
   }
 }
