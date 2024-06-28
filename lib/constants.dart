@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-  static const Color green = Color.fromARGB(126, 165, 223, 5);
+  static const Color green = Color.fromARGB(246, 205, 244, 12);
   static const Color darkBackground = Color.fromARGB(255, 18, 18, 18);
   static const Color darkText = Colors.white;
   static const Color black = Colors.black;
+  static const Color appred = Colors.red;
 }
 
 class AppTheme {
